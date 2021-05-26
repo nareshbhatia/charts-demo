@@ -2,18 +2,10 @@ import React, { useEffect, useRef, useState } from 'react';
 import Highcharts, { Chart } from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
 import { DataPoint } from '../../models';
+import { ChartColors } from '../../utils';
 
 Highcharts.setOptions({
-  colors: [
-    '#00BFF8',
-    '#008733',
-    '#FFB618',
-    '#FF4A44',
-    '#64E572',
-    '#FF9655',
-    '#FFF263',
-    '#6AF9C4',
-  ],
+  colors: ChartColors,
 });
 
 export interface HighchartsPieChartProps {
