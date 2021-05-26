@@ -1,5 +1,9 @@
 import React from 'react';
-import { HighchartsPieChart, RechartsPieChart } from '../../components';
+import {
+  HighchartsPieChart,
+  PlotlyPieChart,
+  RechartsPieChart,
+} from '../../components';
 import { DataPoint } from '../../models';
 import './Home.css';
 
@@ -19,6 +23,17 @@ export const Home = () => {
       <h1>Highcharts</h1>
       <div className="chart">
         <HighchartsPieChart
+          title="Top spending categories"
+          totalLabel="$ per month"
+          pieSize={pieSize}
+          pieInnerSize={pieInnerSize}
+          data={monthlySpending}
+        />
+      </div>
+
+      <h1 className="mt-3">Plotly</h1>
+      <div className="chart">
+        <PlotlyPieChart
           title="Top spending categories"
           totalLabel="$ per month"
           pieSize={pieSize}

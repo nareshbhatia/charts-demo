@@ -19,7 +19,7 @@ export const RechartsPieChart = ({
   data,
 }: RechartsPieChartProps) => {
   const renderCustomLabel: PieLabel = (entry) => {
-    return `${entry.name} ${entry.value}` ;
+    return `${entry.name} ${entry.value}`;
   };
 
   return (
