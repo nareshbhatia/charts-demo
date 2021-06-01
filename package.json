@@ -21,6 +21,8 @@
     "test:update": "react-scripts test --watchAll=false --updateSnapshot"
   },
   "dependencies": {
+    "@nivo/core": "^0.70.1",
+    "@nivo/pie": "^0.70.1",
     "highcharts": "^9.1.0",
     "highcharts-react-official": "^3.0.0",
     "history": "5.0.0",

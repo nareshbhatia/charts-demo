@@ -5,6 +5,7 @@ import { ChartColors } from '../../utils';
 
 export interface PlotlyPieChartProps {
   title: string;
+  total: number;
   totalLabel: string;
   pieSize: number;
   pieInnerSize: number;
@@ -13,6 +14,7 @@ export interface PlotlyPieChartProps {
 
 export const PlotlyPieChart = ({
   title,
+  total,
   totalLabel,
   pieSize,
   pieInnerSize,
@@ -23,7 +25,7 @@ export const PlotlyPieChart = ({
       data={[
         {
           type: 'pie',
-          hole: 0.78,
+          hole: pieInnerSize / pieSize,
           values: data.map((point) => point.value),
           labels: data.map((point) => point.name),
           textinfo: 'label+value',
@@ -52,12 +54,21 @@ export const PlotlyPieChart = ({
         annotations: [
           {
             font: {
+              size: 32,
+            },
+            showarrow: false,
+            text: total.toString(),
+            x: 0.5,
+            y: 0.58,
+          },
+          {
+            font: {
               size: 12,
             },
             showarrow: false,
             text: totalLabel,
             x: 0.5,
-            y: 0.5,
+            y: 0.39,
           },
         ],
       }}

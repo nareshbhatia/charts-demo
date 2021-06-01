@@ -10,6 +10,7 @@ Highcharts.setOptions({
 
 export interface HighchartsPieChartProps {
   title: string;
+  total: number;
   totalLabel: string;
   pieSize: number;
   pieInnerSize: number;
@@ -18,6 +19,7 @@ export interface HighchartsPieChartProps {
 
 export const HighchartsPieChart = ({
   title,
+  total,
   totalLabel,
   pieSize,
   pieInnerSize,
@@ -50,12 +52,6 @@ export const HighchartsPieChart = ({
             // @ts-ignore
             chart.totalLabelElement.destroy();
           }
-
-          // compute total
-          const total = data.reduce(
-            (accumulator, currentValue) => accumulator + currentValue.value,
-            0
-          );
 
           // render total
           // @ts-ignore

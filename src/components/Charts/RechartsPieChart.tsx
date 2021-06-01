@@ -5,6 +5,7 @@ import { ChartColors } from '../../utils';
 
 export interface RechartsPieChartProps {
   title: string;
+  total: number;
   totalLabel: string;
   pieSize: number;
   pieInnerSize: number;
@@ -13,6 +14,7 @@ export interface RechartsPieChartProps {
 
 export const RechartsPieChart = ({
   title,
+  total,
   totalLabel,
   pieSize,
   pieInnerSize,

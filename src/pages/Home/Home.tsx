@@ -1,6 +1,7 @@
 import React from 'react';
 import {
   HighchartsPieChart,
+  NivoPieChart,
   PlotlyPieChart,
   RechartsPieChart,
 } from '../../components';
@@ -17,6 +18,11 @@ const monthlySpending: Array<DataPoint> = [
   { name: 'Travel & Shopping', value: 16 },
 ];
 
+const total = monthlySpending.reduce(
+  (accumulator, currentValue) => accumulator + currentValue.value,
+  0
+);
+
 export const Home = () => {
   return (
     <main>
@@ -24,6 +30,19 @@ export const Home = () => {
       <div className="chart">
         <HighchartsPieChart
           title="Top spending categories"
+          total={total}
+          totalLabel="$ per month"
+          pieSize={pieSize}
+          pieInnerSize={pieInnerSize}
+          data={monthlySpending}
+        />
+      </div>
+
+      <h1 className="mt-3">Nivo</h1>
+      <div className="chart">
+        <NivoPieChart
+          title="Top spending categories"
+          total={total}
           totalLabel="$ per month"
           pieSize={pieSize}
           pieInnerSize={pieInnerSize}
@@ -35,6 +54,7 @@ export const Home = () => {
       <div className="chart">
         <PlotlyPieChart
           title="Top spending categories"
+          total={total}
           totalLabel="$ per month"
           pieSize={pieSize}
           pieInnerSize={pieInnerSize}
@@ -46,6 +66,7 @@ export const Home = () => {
       <div className="chart">
         <RechartsPieChart
           title="Top spending categories"
+          total={total}
           totalLabel="$ per month"
           pieSize={pieSize}
           pieInnerSize={pieInnerSize}
