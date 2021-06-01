@@ -17,26 +17,52 @@ const theme = {
   fontSize: 12,
 };
 
-const CenteredMetric = ({ dataWithArc, centerX, centerY }: any) => {
-  let total = 0;
-  dataWithArc.forEach((datum: any) => {
-    total += datum.value;
-  });
-
+// This is a function that returns a layer component
+const Title = (title: string) => () => {
   return (
     <text
-      x={centerX}
-      y={centerY}
-      textAnchor="middle"
-      dominantBaseline="central"
+      x={9}
+      y={-60}
       style={{
-        fontSize: '32px',
+        fontSize: '16px',
       }}
     >
-      {total}
+      {title}
     </text>
   );
 };
+
+// This is a function that returns a layer component
+const CenteredMetric =
+  (total: number, totalLabel: string) =>
+  ({ centerX, centerY }: any) => {
+    return (
+      <>
+        <text
+          x={centerX}
+          y={centerY - 12}
+          textAnchor="middle"
+          dominantBaseline="central"
+          style={{
+            fontSize: '32px',
+          }}
+        >
+          {total}
+        </text>
+        <text
+          x={centerX}
+          y={centerY + 15}
+          textAnchor="middle"
+          dominantBaseline="central"
+          style={{
+            fontSize: '12px',
+          }}
+        >
+          {totalLabel}
+        </text>
+      </>
+    );
+  };
 
 export const NivoPieChart = ({
   title,
@@ -66,7 +92,12 @@ export const NivoPieChart = ({
       arcLinkLabelsTextColor="#333333"
       arcLinkLabelsThickness={2}
       arcLinkLabelsColor={{ from: 'color' }}
-      layers={['arcs', 'arcLinkLabels', CenteredMetric]}
+      layers={[
+        'arcs',
+        'arcLinkLabels',
+        Title(title),
+        CenteredMetric(total, totalLabel),
+      ]}
     />
   );
 };
