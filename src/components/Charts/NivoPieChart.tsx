@@ -1,5 +1,8 @@
 import React from 'react';
-import { ResponsivePie } from '@nivo/pie';
+import { animated } from '@react-spring/web';
+import { ArcLinkLabelComponent } from '@nivo/arcs';
+import { useTheme } from '@nivo/core';
+import { ComputedDatum, ResponsivePie } from '@nivo/pie';
 import { DataPoint } from '../../models';
 import { ChartColors } from '../../utils';
 
@@ -64,6 +67,58 @@ const CenteredMetric =
     );
   };
 
+const Label: ArcLinkLabelComponent<ComputedDatum<{}>> = ({
+  datum,
+  label,
+  style,
+}) => {
+  const theme = useTheme();
+
+  // TODO: remove the hard-coding below to left-align the values
+  const x =
+    datum.id === 'Travel & Shopping'
+      ? -85
+      : datum.id === 'Miscellaneous'
+      ? -61
+      : 0;
+
+  return (
+    <animated.g opacity={style.opacity}>
+      <animated.path
+        fill="none"
+        stroke={style.linkColor}
+        strokeWidth={style.thickness}
+        d={style.path}
+      />
+      <animated.text
+        transform={style.textPosition}
+        textAnchor={style.textAnchor}
+        dominantBaseline="central"
+        style={{
+          ...theme.labels.text,
+          fill: style.textColor,
+        }}
+      >
+        {label}
+      </animated.text>
+      <g transform={`translate(${x}, 16)`}>
+        <animated.text
+          transform={style.textPosition}
+          textAnchor={style.textAnchor}
+          dominantBaseline="central"
+          style={{
+            ...theme.labels.text,
+            fill: style.textColor,
+            fontWeight: 'bold',
+          }}
+        >
+          {datum.formattedValue}
+        </animated.text>
+      </g>
+    </animated.g>
+  );
+};
+
 export const NivoPieChart = ({
   title,
   total,
@@ -87,11 +142,11 @@ export const NivoPieChart = ({
       innerRadius={pieInnerSize / pieSize}
       padAngle={1}
       activeOuterRadiusOffset={8}
-      arcLinkLabel={(d) => `${d.id}: ${d.value}`}
       arcLinkLabelsSkipAngle={10}
       arcLinkLabelsTextColor="#333333"
       arcLinkLabelsThickness={2}
       arcLinkLabelsColor={{ from: 'color' }}
+      arcLinkLabelComponent={Label}
       layers={[
         'arcs',
         'arcLinkLabels',
