@@ -132,7 +132,6 @@ export const NivoPieChart = ({
     value: point.value,
   }));
 
-  // @ts-ignore
   return (
     <ResponsivePie
       data={nivoData}
@@ -147,6 +146,7 @@ export const NivoPieChart = ({
       arcLinkLabelsThickness={2}
       arcLinkLabelsColor={{ from: 'color' }}
       arcLinkLabelComponent={Label}
+      tooltip={() => null}
       layers={[
         'arcs',
         'arcLinkLabels',
