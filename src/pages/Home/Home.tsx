@@ -5,7 +5,7 @@ import {
   PlotlyPieChart,
   RechartsPieChart,
 } from '../../components';
-import { DataPoint } from '../../models';
+import { DataPoint, DataPointHelpers } from '../../models';
 import './Home.css';
 
 const pieSize = 152;
@@ -18,10 +18,7 @@ const monthlySpending: Array<DataPoint> = [
   { name: 'Travel & Shopping', value: 16 },
 ];
 
-const total = monthlySpending.reduce(
-  (accumulator, currentValue) => accumulator + currentValue.value,
-  0
-);
+const total = DataPointHelpers.getTotal(monthlySpending);
 
 export const Home = () => {
   return (

@@ -98,6 +98,9 @@ export const HighchartsPieChart = ({
     plotOptions: {
       pie: {
         allowPointSelect: true,
+        cursor: 'pointer',
+        size: pieSize,
+        innerSize: pieInnerSize,
         dataLabels: {
           distance: 30, // this is the default
           format: '{point.name}<br /><b>{point.y}</b>',
@@ -109,7 +112,6 @@ export const HighchartsPieChart = ({
         },
       },
       series: {
-        cursor: 'pointer',
         states: {
           hover: {
             enabled: false,
@@ -125,9 +127,29 @@ export const HighchartsPieChart = ({
       style: {
         fontSize: '16px',
       },
+      text: title,
     },
     tooltip: {
       enabled: false,
+    },
+    responsive: {
+      rules: [
+        {
+          condition: {
+            // rule applies when chart width is less than this
+            maxWidth: 325,
+          },
+          chartOptions: {
+            plotOptions: {
+              pie: {
+                dataLabels: {
+                  distance: 25,
+                },
+              },
+            },
+          },
+        },
+      ],
     },
   });
 
@@ -137,21 +159,13 @@ export const HighchartsPieChart = ({
       name: point.name,
       y: point.value,
     }));
+    // overwrite the options - the new ones will be passed to chart.update()
+    // see https://github.com/highcharts/highcharts-react#optimal-way-to-update
     setChartOptions({
-      plotOptions: {
-        pie: {
-          // @ts-ignore
-          size: pieSize,
-          innerSize: pieInnerSize,
-        },
-      },
+      // @ts-ignore
       series: [{ data: pieData }],
-      title: {
-        // @ts-ignore
-        text: title,
-      },
     });
-  }, [title, totalLabel, pieSize, pieInnerSize, data]);
+  }, [data]);
 
   return (
     <HighchartsReact
