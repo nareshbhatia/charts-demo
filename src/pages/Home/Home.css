@@ -1,3 +1,9 @@
+.charts-wrapper {
+  display: grid;
+  grid-template-columns: 380px 380px;
+  grid-gap: 32px;
+}
+
 .chart {
   width: 380px;
   height: 320px;

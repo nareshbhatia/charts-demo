@@ -1,6 +1,8 @@
 # Charts Demo
 
-This is a demo of popular charting libraries.
+This project compares 4 charting libraries using the example of a donut chart.
+
+![Screen Shot](assets/screenshot.png)
 
 This project was bootstrapped with
 [React Accelerate](https://github.com/PublicisSapient/cra-template-accelerate).

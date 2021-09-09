@@ -23,52 +23,62 @@ const total = DataPointHelpers.getTotal(monthlySpending);
 export const Home = () => {
   return (
     <main>
-      <h1>Highcharts</h1>
-      <div className="chart">
-        <HighchartsPieChart
-          title="Top spending categories"
-          total={total}
-          totalLabel="$ per month"
-          pieSize={pieSize}
-          pieInnerSize={pieInnerSize}
-          data={monthlySpending}
-        />
-      </div>
+      <div className="charts-wrapper">
+        <div>
+          <h1>Highcharts</h1>
+          <div className="chart">
+            <HighchartsPieChart
+              title="Top spending categories"
+              total={total}
+              totalLabel="$ per month"
+              pieSize={pieSize}
+              pieInnerSize={pieInnerSize}
+              data={monthlySpending}
+            />
+          </div>
+        </div>
 
-      <h1 className="mt-3">Nivo</h1>
-      <div className="chart">
-        <NivoPieChart
-          title="Top spending categories"
-          total={total}
-          totalLabel="$ per month"
-          pieSize={pieSize}
-          pieInnerSize={pieInnerSize}
-          data={monthlySpending}
-        />
-      </div>
+        <div>
+          <h1>Nivo</h1>
+          <div className="chart">
+            <NivoPieChart
+              title="Top spending categories"
+              total={total}
+              totalLabel="$ per month"
+              pieSize={pieSize}
+              pieInnerSize={pieInnerSize}
+              data={monthlySpending}
+            />
+          </div>
+        </div>
 
-      <h1 className="mt-3">Plotly</h1>
-      <div className="chart">
-        <PlotlyPieChart
-          title="Top spending categories"
-          total={total}
-          totalLabel="$ per month"
-          pieSize={pieSize}
-          pieInnerSize={pieInnerSize}
-          data={monthlySpending}
-        />
-      </div>
+        <div>
+          <h1>Plotly</h1>
+          <div className="chart">
+            <PlotlyPieChart
+              title="Top spending categories"
+              total={total}
+              totalLabel="$ per month"
+              pieSize={pieSize}
+              pieInnerSize={pieInnerSize}
+              data={monthlySpending}
+            />
+          </div>
+        </div>
 
-      <h1 className="mt-3">Recharts</h1>
-      <div className="chart">
-        <RechartsPieChart
-          title="Top spending categories"
-          total={total}
-          totalLabel="$ per month"
-          pieSize={pieSize}
-          pieInnerSize={pieInnerSize}
-          data={monthlySpending}
-        />
+        <div>
+          <h1>Recharts</h1>
+          <div className="chart">
+            <RechartsPieChart
+              title="Top spending categories"
+              total={total}
+              totalLabel="$ per month"
+              pieSize={pieSize}
+              pieInnerSize={pieInnerSize}
+              data={monthlySpending}
+            />
+          </div>
+        </div>
       </div>
     </main>
   );
